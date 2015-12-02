@@ -1,4 +1,4 @@
-[![Travis CI](https://travis-ci.org/RSLayout/RSLayout.svg?branch=master)](https://travis-ci.org/RSLayout/RSLayout)
+[![Build Status](https://travis-ci.org/roelspruit/RSLayout.svg?branch=master)](https://travis-ci.org/roelspruit/RSLayout)
 
 # RSLayout
 This is a collection of helper functions to layout views in Swift.
