@@ -11,12 +11,17 @@ import UIKit
 class ViewController: UIViewController {
 
     var constraintGroup: ConstraintGroup?
+    var sizeGroup: ConstraintGroup?
     
-    @IBOutlet var testView: UIView!
+    var testView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        testView.backgroundColor = UIColor.redColor()
+        view.addSubview(testView)
+        
+        sizeGroup = testView.layoutSize(100)
         testView.layoutCenter()
     }
     
@@ -26,15 +31,21 @@ class ViewController: UIViewController {
             testView.clearConstraintGroup(oldConstraints)
         }
         
+        if let oldSizeConstraints = sizeGroup {
+            testView.clearConstraintGroup(oldSizeConstraints)
+        }
+        
         switch sender.selectedSegmentIndex {
         case 0:
-            self.constraintGroup = self.testView.layoutFullWidth()
+            sizeGroup = testView.layoutHeight(100)
+            constraintGroup = testView.layoutFullWidth()
         case 1:
-            self.constraintGroup = self.testView.layoutFullHeight()
+            sizeGroup = testView.layoutWidth(100)
+            constraintGroup = testView.layoutFullHeight()
         case 2:
-            self.constraintGroup = self.testView.layoutFillSuperview()
+            constraintGroup = testView.layoutFillSuperview()
         case 3:
-            self.constraintGroup = self.testView.layoutSize(100)
+            constraintGroup = testView.layoutSize(100)
         default:
             break
         }
@@ -42,7 +53,6 @@ class ViewController: UIViewController {
         self.testView.setNeedsLayout()
         
         UIView.animateWithDuration(0.3) { () -> Void in
-            
             self.testView.layoutIfNeeded()
         }
     }
